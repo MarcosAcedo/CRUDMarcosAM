@@ -8,6 +8,7 @@ package es.albarregas.conexion;
 import es.albarregas.beans.Ave;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -30,8 +31,8 @@ import javax.sql.DataSource;
  *
  * @author portatil
  */
-@WebServlet(name = "Visualizar", urlPatterns = {"/Visualizar"})
-public class Visualizar extends HttpServlet {
+@WebServlet(name = "Anadir", urlPatterns = {"/Anadir"})
+public class Anadir extends HttpServlet {
     
     DataSource dataSource;
 
@@ -51,44 +52,44 @@ public class Visualizar extends HttpServlet {
         Connection conexion = null;
         Statement query = null;
         ResultSet resultado = null;
-        String url = "JSP/Visualizar.jsp";
-        //PreparedStatement pstmt = null;
+        PreparedStatement pstmt = null;
         
         try {
             conexion = dataSource.getConnection();
             HttpSession sesion = request.getSession();
             query = conexion.createStatement();
-            resultado = query.executeQuery("SELECT * FROM aves");
-            
-            ArrayList<Ave> aves = new ArrayList<>();
-            
-            if(resultado.next()) {
-                while (resultado.next()) {
-                    Ave ave = new Ave(resultado.getString("anilla"), resultado.getString("especie"), resultado.getString("lugar"), resultado.getString("fecha"));
-                    aves.add(ave);
-                }
-            } else {
-                url = "JSP/Error.jsp";
-            }
-            sesion.setAttribute("aves", aves);
+            resultado = null;
+
+            pstmt = conexion.prepareStatement("INSERT INTO aves(anilla, especie, lugar, fecha) VALUES(?, ?, ?, ?)");
+            pstmt.setString(1, request.getParameter("Anilla"));
+            pstmt.setString(2, request.getParameter("Especie"));
+            pstmt.setString(3, request.getParameter("Lugar"));
+            pstmt.setString(4, request.getParameter("Fecha"));
+            resultado = pstmt.executeQuery();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Visualizar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Anadir.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
+
             if (conexion != null) {
                 try {
                     resultado.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Visualizar.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (NullPointerException e) {}
+                    Logger.getLogger(Anadir.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NullPointerException e) {
+                    
+                }
                 try {
                     conexion.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Visualizar.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Anadir.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+
         }
-        request.getRequestDispatcher(url).forward(request, response);
+
+        request.getRequestDispatcher("JSP/Ejecutado.jsp").forward(request, response);
+
     }
 
     @Override
@@ -97,11 +98,12 @@ public class Visualizar extends HttpServlet {
             Context contextoInicial = new InitialContext();
             dataSource = (DataSource) contextoInicial.lookup("java:comp/env/jdbc/APool");
         } catch (NamingException ex) {
-            Logger.getLogger(Visualizar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Anadir.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Se ha producido un error en la conexion con la base de datos");
             ex.printStackTrace();
         }
-    }
+    } 
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Anadir
-    Created on : 02-nov-2019, 20:29:28
+    Document   : Ejecutado
+    Created on : 03-nov-2019, 17:09:11
     Author     : Portatil
 --%>
 
@@ -14,15 +14,10 @@
     </head>
     <body>
         <div>
-            <h1>Elije una o más aves para eliminar</h1>
             <form action="<%=request.getContextPath()%>/ControladorDirecciones2" method="post">
-                <p>
-                   <!--<input type="radio" name="borrar">-->
-                </p>
-                <input type="submit" name="Boton" value="Cancelar">&emsp;&emsp;
-                <input type="submit" name="Boton" value="Eliminar">
+                <h1>Ejecutado correctamente</h1>
+                <input type="submit" name="Boton" value="Inicio">
             </form>
         </div>
-        
     </body>
 </html>

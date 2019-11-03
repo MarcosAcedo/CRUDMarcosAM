@@ -18,3 +18,7 @@ h3  {
 h6  {
         color: grey;
     }
+
+    p {
+        text-align: center;
+    }

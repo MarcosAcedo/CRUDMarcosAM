@@ -28,12 +28,11 @@
     <body>
         <div>
             <h1>Listado de todas las aves</h1>
-            <form action="ControladorDirecciones" method="post">
+            <form action="<%=request.getContextPath()%>/ControladorDirecciones2" method="post">
                 <p>
                     <%=tabla != null ? tabla.toString() : ""%>
                 </p>
                 <input type="submit" name="Boton" value="Inicio">&emsp;&emsp;
-                <input type="submit" name="Boton" value="Visualizar">
             </form>
         </div>
         

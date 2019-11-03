@@ -15,7 +15,7 @@
     <body>
         <div>
             <h1>Actualizar datos de un ave</h1>
-            <form action="ControladorDirecciones" method="post">
+            <form action="<%=request.getContextPath()%>/ControladorDirecciones2" method="post">
                 <p>
                     <!--<input type="radio" name="cambiar">-->
                 </p>
@@ -23,6 +23,5 @@
                 <input type="submit" name="Boton" value="Realizar">
             </form>
         </div>
-        
     </body>
 </html>

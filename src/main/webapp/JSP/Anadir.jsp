@@ -15,7 +15,12 @@
     <body>
         <div>
             <h1>Añadir nuevo pajaro</h1>
-            <form action="ControladorDirecciones" method="post">
+            <p>
+                <%if (session.getAttribute("error") != null){%>
+                 <h3><%=session.getAttribute("error")%></h3>   
+                <%}%>
+            </p>
+            <form action="<%=request.getContextPath()%>/ControladorDirecciones2" method="post">
                 <p>
                     Anilla <input type="text" name="Anilla" maxlength="6"><br>
                     Especie <input type="text" name="Especie" maxlength="20"><br>
@@ -23,7 +28,7 @@
                     Fecha <input type="date" name="Fecha"><br>
                 </p>
                 <input type="submit" name="Boton" value="Cancelar">&emsp;&emsp;
-                <input type="submit" name="Boton" value="Añadir">
+                <input type="submit" name="Boton" value="Anadir">
             </form>
         </div>
         
