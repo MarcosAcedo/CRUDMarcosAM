@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package es.albarregas.beans;
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  *
  * @author portatil
  */
-public class Ave {
+public class Ave implements Serializable{
 
     private String anilla, especie, lugar;
 
