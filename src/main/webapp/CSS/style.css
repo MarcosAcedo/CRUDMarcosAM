@@ -1,0 +1,20 @@
+div {   
+	background-color: #dced88;
+	margin-left: 275px;
+        margin-right: 250px;
+        padding-bottom: 10px;
+        border: 3px solid black;
+     }
+     
+body{
+        background-color: #6be1b6;
+        text-align: center;
+}
+
+h3  {
+        color: red;
+    }
+
+h6  {
+        color: grey;
+    }

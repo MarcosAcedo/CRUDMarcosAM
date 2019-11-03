@@ -1,0 +1,18 @@
+
+# Created by https://www.gitignore.io/api/java-web,netbeans
+# Edit at https://www.gitignore.io/?templates=java-web,netbeans
+
+### Java-Web ###
+## ignoring target file
+
+### NetBeans ###
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# End of https://www.gitignore.io/api/java-web,netbeans
